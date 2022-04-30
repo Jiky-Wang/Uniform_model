@@ -289,4 +289,5 @@ if __name__ == "__main__":
     model = Uniform(N, Dn, D0, a, bmax, deta)
     # model.plot_static(Nt, b_dens, n_dens)
     model.plot_animation(b_dens, n_dens)
+    print("you did it well done!")
 
