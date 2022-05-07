@@ -96,6 +96,7 @@ if __name__ == '__main__':
     # num = 0
     # for key in nearest_neighbors.keys():
     #     num += 1
+
     num = len(nearest_neighbors)
     print(f"The nearest number is: {num}")
     end_time = datetime.datetime.now()

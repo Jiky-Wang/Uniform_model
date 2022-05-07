@@ -6,6 +6,7 @@ def getCircle(p1, p2, p3):
     # three colinear
     if (x21 * y32 - x32 * y21 == 0):
         return None
+
     xy21 = p2[0] * p2[0] - p1[0] * p1[0] + p2[1] * p2[1] - p1[1] * p1[1]
     xy32 = p3[0] * p3[0] - p2[0] * p2[0] + p3[1] * p3[1] - p2[1] * p2[1]
     y0 = (x32 * xy21 - x21 * xy32) / 2 * (y21 * x32 - y32 * x21)
