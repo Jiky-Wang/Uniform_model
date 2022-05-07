@@ -59,8 +59,25 @@ class Voronoi():
 
         potential_neighbors = list(itt.combinations(indexs, 3))
         # print(potential_neighbors[:3])
+        nearest_neighbors = {}
+        for triangle in potential_neighbors:
+            # print(triangle[0])
+            (xi, yi) = random_sites[triangle[0]]
+            (xj, yj) = random_sites[triangle[1]]
+            (xk, yk) = random_sites[triangle[2]]
+            p1, p2, p3 = (xi, yi), (xj, yj), (xk, yk)
+            (x0, y0), r = getCircle(p1, p2, p3)
+            dist = []
+            for site in random_sites.values():
+                # print('site0: ', site[0])
+                dist.append(np.sqrt((site[0] - x0) ** 2 + (site[1] - y0) ** 2))
+            dist_min = np.min(dist)
+            if dist_min < r:
+                continue
+            else:
+                nearest_neighbors[(xi, yi), (xj, yj), (xk, yk)] = (x0, y0)
 
-        return
+        return nearest_neighbors
 
     def voronoi_lattice(self):
 
@@ -69,11 +86,17 @@ class Voronoi():
 
 if __name__ == '__main__':
     start_time = datetime.datetime.now()
-    row = 66
-    col = 66
+    row = 8
+    col = 8
     vor = Voronoi(row, col)
     random_sites = vor.random_sites(0.2)
-    print(random_sites)
-    vor.direct_lattice(random_sites)
+    print(f"The random sites are: {random_sites} \nThe number of random sites is: {len(random_sites)}")
+    nearest_neighbors = vor.direct_lattice(random_sites)
+    print(f"\nThe nearest neighbors: {nearest_neighbors}")
+    # num = 0
+    # for key in nearest_neighbors.keys():
+    #     num += 1
+    num = len(nearest_neighbors)
+    print(f"The nearest number is: {num}")
     end_time = datetime.datetime.now()
-    print(f"\nTime: {(end_time - start_time).seconds}")
+    print(f"\nTime: {end_time - start_time}")

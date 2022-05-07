@@ -15,7 +15,7 @@ def getCircle(p1, p2, p3):
 
 
 if __name__ == '__main__':
-    p1, p2, p3 = [0, 0], [4, 0], [2, 2]
+    p1, p2, p3 = (0, 0), (4, 0), (2, 2)
     print(getCircle(p1, p2, p3))
 
     # sites = [(), (), ()]
