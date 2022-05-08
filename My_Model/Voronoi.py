@@ -83,6 +83,32 @@ class Voronoi():
 
         pass
 
+    def calculat_lij(self, lattice_sites, nearest_neighbors):
+        """
+        Calculate the necessary part lij of the wij.
+        :param lattice_sites: A dictionary with all lattice sites and their coordinates.
+        :return: A dictionary with all lij and their length with a format of
+        {((0, 0), (0, 1)): dist1, ((0, 0), (1, 0)): dist2, ...}
+        """
+        lij = {}
+        indexss = []
+        for indexs in nearest_neighbors.keys():
+            indexss.append(indexs)
+
+        # point = (0, 0)
+        for triangle in indexss:
+            l1 = np.sqrt((lattice_sites[triangle[0]][0] - lattice_sites[triangle[1]][0]) ** 2 +
+                         (lattice_sites[triangle[0]][1] - lattice_sites[triangle[1]][1]) ** 2)
+            lij[(triangle[0], triangle[1])] = l1
+            lij[(triangle[1], triangle[0])] = l1
+            l2 = np.sqrt((lattice_sites[triangle[0]][0] - lattice_sites[triangle[2]][0]) ** 2 +
+                         (lattice_sites[triangle[0]][1] - lattice_sites[triangle[2]][1]) ** 2)
+            lij[(triangle[0], triangle[2])] = l2
+            lij[(triangle[2], triangle[0])] = l2
+
+
+        return lij
+
 
 if __name__ == '__main__':
     start_time = datetime.datetime.now()
