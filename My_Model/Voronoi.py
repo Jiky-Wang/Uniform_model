@@ -21,13 +21,13 @@ class Voronoi():
     def random_sites(self, min_distance):
         """
         Return a dictionary of each lattice site and their coordinate.
-        {(0, 0): (x0, y0), (0, 1): (x0, y1), (0, 2): (x0, y2), ...}
         :param min_distance Define the minor distance from neighbor sites.
         :return random_sites_2d With the format of {(0, 0): (x0, y0), (0, 1): (x0, y1), (0, 2): (x0, y2), ...}
         random_sites_1d With the format of {0: (x0, y0), 1: (x0, y1), 2:(x0, y2), ...}
         random_1d_2d With the format of {0: (0, 0), 1: (0, 1), 2: (0, 2), ...}
         """
         random_sites_2d = {}
+        random_sites = {}
 
         for i in range(self.row):
             for j in range(self.col):
@@ -69,7 +69,7 @@ class Voronoi():
 
     def direct_lattice_2d(self, random_sites):
         """
-        Return a dictionary of all the direct lattice's match-points (three points in a triangle) with 2-d index
+        Return a dictionary of all the direct lattice's match-points (three points in a triangle)
         and the triangle's center of the circle.
         {[(x1, y1), (x2, y2), (x3, y3)]: (c_x1, c_y1), [(xi, yi), (xj, yj), (xk, yk)]: (c_xi, c_yi), ...}
         """
@@ -188,3 +188,4 @@ if __name__ == '__main__':
     # print(f"The nearest number is: {num}")
     # end_time = time.time()
     # print(f"\nTime: {end_time - start_time}")
+
